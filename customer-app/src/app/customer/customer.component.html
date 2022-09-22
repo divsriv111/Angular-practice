@@ -1,1 +1,33 @@
-<p>customer works!</p>
+<div>
+    <table>
+        <tr>
+            <td>Customer Name:</td>
+            <td><input type="text" [(ngModel)]="customer.CustomerName"></td>
+        </tr>
+        <tr>
+            <td>Customer Amount:</td>
+            <td><input type="text" [(ngModel)]="customer.CustomerAmount"></td>
+        </tr>
+        <tr>
+            <td>Customer Code:</td>
+            <td><input type="text" [(ngModel)]="customer.CustomerCode"></td>
+        </tr>
+        <tr>
+            <button (click)="AddCustomer($event)">Add Customer</button>
+        </tr>
+    </table>
+</div>
+<br>
+<ng-template #whenEmpty>
+    <h4>There is no value to display!</h4>
+</ng-template>
+
+<div *ngIf="isAvailable; else whenEmpty">
+    <table border="3px">
+        <tr *ngFor="let item of listOfCustomer">
+            <td>{{item.CustomerName}}</td>
+            <td>{{item.CustomerAmount}}</td>
+            <td>{{item.CustomerCode}}</td>
+        </tr>
+    </table>
+</div>
