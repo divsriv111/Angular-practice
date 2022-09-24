@@ -1,21 +1,30 @@
 <div>
-    <table>
-        <tr>
-            <td>Customer Name:</td>
-            <td><input type="text" [(ngModel)]="customer.CustomerName"></td>
-        </tr>
-        <tr>
-            <td>Customer Amount:</td>
-            <td><input type="text" [(ngModel)]="customer.CustomerAmount"></td>
-        </tr>
-        <tr>
-            <td>Customer Code:</td>
-            <td><input type="text" [(ngModel)]="customer.CustomerCode"></td>
-        </tr>
-        <tr>
-            <button (click)="AddCustomer($event)">Add Customer</button>
-        </tr>
-    </table>
+    <form [formGroup]="customerModel.customerFormGroup">
+        <table>
+            <tr>
+                <td>Customer Name:</td>
+                <td><input formControlName="customerNameControl" type="text" [(ngModel)]="customerModel.CustomerName">
+                </td>
+                <td [hidden]="!hasError('required','customerNameControl')">Customer name is required!</td>
+            </tr>
+            <tr>
+                <td>Customer Amount:</td>
+                <td><input type="text" [ngModelOptions]="{standalone:true}" [(ngModel)]="customerModel.CustomerAmount">
+                </td>
+            </tr>
+            <tr>
+                <td>Customer Code:</td>
+                <td><input formControlName="customerCodeControl" type="text" [(ngModel)]="customerModel.CustomerCode">
+                </td>
+                <td [hidden]="!hasError('required','customerCodeControl')">Customer code is required!</td>
+                <td [hidden]="!hasError('pattern','customerCodeControl')">Customer code is not in proper format!</td>
+            </tr>
+            <tr>
+                <button [disabled]="customerModel.customerFormGroup.invalid" (click)="AddCustomer($event)">Add
+                    Customer</button>
+            </tr>
+        </table>
+    </form>
 </div>
 <br>
 <ng-template #whenEmpty>
@@ -23,7 +32,12 @@
 </ng-template>
 
 <div *ngIf="isAvailable; else whenEmpty">
-    <table border="3px">
+    <table>
+        <tr>
+            <th>CustomerName</th>
+            <th>CustomerAmount</th>
+            <th>CustomerCode</th>
+        </tr>
         <tr *ngFor="let item of listOfCustomer">
             <td>{{item.CustomerName}}</td>
             <td>{{item.CustomerAmount}}</td>

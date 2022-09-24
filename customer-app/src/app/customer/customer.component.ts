@@ -7,7 +7,7 @@ import { Customer } from 'src/models/customer';
   styleUrls: ['./customer.component.css'],
 })
 export class CustomerComponent implements OnInit {
-  customer: Customer = new Customer();
+  customerModel: Customer = new Customer();
   listOfCustomer: Array<Customer> = new Array<Customer>();
   isAvailable: boolean = this.listOfCustomer.length != 0;
   constructor() {}
@@ -15,9 +15,18 @@ export class CustomerComponent implements OnInit {
   ngOnInit(): void {}
 
   AddCustomer(event: any) {
-    this.listOfCustomer.push(this.customer);
-    this.customer = new Customer();
+    this.listOfCustomer.push(this.customerModel);
+    this.customerModel = new Customer();
     this.isAvailable = this.listOfCustomer.length != 0;
     console.log(this.listOfCustomer);
+  }
+
+  hasError(typeOfValidator: string, controlGroupName: string): boolean {
+    return (
+      this.customerModel.customerFormGroup.dirty &&
+      this.customerModel.customerFormGroup.controls[controlGroupName].hasError(
+        typeOfValidator
+      )
+    );
   }
 }
