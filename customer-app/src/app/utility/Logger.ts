@@ -1,5 +1,12 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root',
+})
 export class BaseLogger {
-  Log() {}
+  Log() {
+    console.log('using base logger');
+  }
 }
 
 export class DbLogger extends BaseLogger {

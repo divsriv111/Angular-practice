@@ -1,4 +1,4 @@
-import { Component, Injector } from '@angular/core';
+import { Component } from '@angular/core';
 import { BaseLogger } from '../utility/Logger';
 
 @Component({
@@ -11,8 +11,8 @@ export class HomeComponent {
 
   logger!: BaseLogger;
 
-  constructor(_injector: Injector) {
-    this.logger = _injector.get('2');
+  constructor(_logger: BaseLogger) {
+    this.logger = _logger;
     this.logger.Log();
   }
 }
