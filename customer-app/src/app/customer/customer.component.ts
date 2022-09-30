@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Customer } from 'src/models/customer';
+import { BaseLogger } from '../utility/Logger';
 
 @Component({
   selector: 'app-customer',
@@ -10,7 +11,10 @@ export class CustomerComponent implements OnInit {
   customerModel: Customer = new Customer();
   listOfCustomer: Array<Customer> = new Array<Customer>();
   isAvailable: boolean = this.listOfCustomer.length != 0;
-  constructor() {}
+
+  constructor(_logger: BaseLogger) {
+    _logger.Log();
+  }
 
   ngOnInit(): void {}
 

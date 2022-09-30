@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Injector } from '@angular/core';
+import { BaseLogger } from '../utility/Logger';
 
 @Component({
   selector: 'app-home',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
   title = 'customer-app';
+
+  logger!: BaseLogger;
+
+  constructor(_injector: Injector) {
+    this.logger = _injector.get('2');
+    this.logger.Log();
+  }
 }
