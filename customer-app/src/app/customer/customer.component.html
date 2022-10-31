@@ -27,21 +27,7 @@
     </form>
 </div>
 <br>
-<ng-template #whenEmpty>
-    <h4>There is no value to display!</h4>
-</ng-template>
 
-<div *ngIf="isAvailable; else whenEmpty">
-    <table>
-        <tr>
-            <th>CustomerName</th>
-            <th>CustomerAmount</th>
-            <th>CustomerCode</th>
-        </tr>
-        <tr *ngFor="let item of listOfCustomer">
-            <td>{{item.CustomerName}}</td>
-            <td>{{item.CustomerAmount}}</td>
-            <td>{{item.CustomerCode}}</td>
-        </tr>
-    </table>
+<div [grid-columns]="" [grid-data]="" >
+
 </div>

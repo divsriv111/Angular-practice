@@ -4,9 +4,10 @@ import { CommonModule } from '@angular/common';
 import { CustomerComponent } from './customer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomerRoutingModule } from '../routing/customer-routing.module';
+import { CustomerGridComponent } from './customer-grid/customer-grid.component';
 
 @NgModule({
-  declarations: [CustomerComponent],
+  declarations: [CustomerComponent, CustomerGridComponent],
   imports: [
     CommonModule,
     FormsModule,
